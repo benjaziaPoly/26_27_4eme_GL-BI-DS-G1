@@ -1,0 +1,33 @@
+{% extends 'template_job.html.twig' %}
+{% block title %}
+    {{ parent() }} - Détail Job
+{% endblock %}
+
+{% block body %}
+    <h3>Detail job</h3>
+    {% if job %}
+        {% if job.image is not null %}
+            <img src="{{ job.image.url }}"  width="150" height="80"/>
+        {% endif %}
+    <ul>
+        <li>Type : {{ job.getType }}</li>
+        <li>Company : {{ job.getCompany }}</li>
+        <li>Date Expiration : {{ job.getExpiresAt | date("d-m-Y") }}</li>
+    </ul>
+    {% if candidatures | length > 0 %}
+       <h3>Liste des candidatures pour le ce job</h3>
+       {% for c in candidatures %}
+        <ul>
+            <li>Nom & prénom: {{ c.candidat | upper}}</li>
+            <li>Contenu : {{ c.contenu }}</li>
+            <li>Date de dépot: {{ c.date | date("d-m-Y") }}</li>
+        </ul>
+       {% endfor %}
+    {% else %}   
+       Pas de candidature pour ce job !!!!
+    {% endif %}
+    
+    {% else %}
+        <strong> Code Job Incorrect !!</strong>
+     {% endif %}   
+{% endblock %}

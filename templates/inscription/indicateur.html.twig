@@ -1,0 +1,19 @@
+<h2>Liste des indicaterus</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Indicateur</th>
+            <th>Valeur</th>
+            <th>Unité</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for indic in indicateurs  %}
+            <tr>
+                <td>{{ indic.libelle  }}</td>
+                <td>{{ indic.valeur|number_format(2,'.',' ')  }}</td>
+                <td>{{ indic.unite  }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
